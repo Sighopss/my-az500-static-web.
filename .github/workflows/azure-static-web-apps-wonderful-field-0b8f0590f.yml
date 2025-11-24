@@ -27,10 +27,11 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WONDERFUL_FIELD_0B8F0590F }}
           action: "upload"
           ###### Repository/Build Configurations ######
-          app_location: "/"          # Your HTML files are in the root of the repo
+          app_location: "/"          # Your HTML files are in the root
           api_location: ""           # No API
-          output_location: ""        # No build → deploy files as-is
-          skip_app_build: true       # THIS IS THE KEY LINE – skips Oryx/Node build entirely
+          output_location: ""        # No build output
+          skip_app_build: true       # Skip Oryx build
+          app_build_command: ""      # Explicitly: No build command needed
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
