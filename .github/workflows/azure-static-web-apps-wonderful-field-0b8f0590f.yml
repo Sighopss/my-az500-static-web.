@@ -14,6 +14,8 @@ jobs:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
+    env:
+      ENABLE_ORYX_BUILD: false  # THIS DISABLES ORYX ENTIRELY - no detection or build!
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -27,11 +29,11 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WONDERFUL_FIELD_0B8F0590F }}
           action: "upload"
           ###### Repository/Build Configurations ######
-          app_location: "/"          # Your HTML files are in the root
+          app_location: "/"          # Root folder with index.html
           api_location: ""           # No API
-          output_location: ""        # No build output
-          skip_app_build: true       # Skip Oryx build
-          app_build_command: ""      # Explicitly: No build command needed
+          output_location: ""        # No build output needed
+          skip_app_build: true       # Redundant now, but keeps it explicit
+          app_build_command: ""      # No build command
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
